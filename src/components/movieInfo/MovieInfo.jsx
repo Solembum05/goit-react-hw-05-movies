@@ -1,6 +1,6 @@
 import React from 'react'
-import { AdditionlInfo, Container, InfoLinks, Poster } from './MovieInfo.styled';
-import { Outlet } from 'react-router-dom';
+import { Container, Poster } from './MovieInfo.styled';
+
 
 
 const MovieInfo = ({ movieInfo }) => {
