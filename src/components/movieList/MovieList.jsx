@@ -7,7 +7,7 @@ const MovieList = ({movies}) => {
     <div>
       <ul>
         {movies.map(({ id, title, name }) => (
-          <OneMovie key={id} title={title} name={name } />
+          <OneMovie key={id} title={title} name={name } id={id} />
         ))}
       </ul>
     </div>
