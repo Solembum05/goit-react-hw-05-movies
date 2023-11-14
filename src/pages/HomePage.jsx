@@ -6,9 +6,9 @@ const getTrending = 'trending/all/day';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([])
-  // const [error, setError] = useState('')
+  const [error, setError] = useState(null)
   // const [loading, setLoading] = useState(false)
-  // const [query, setQuery] = useState('')
+
 
 useEffect(() => {
   const getRequest = async () => {
@@ -17,20 +17,23 @@ useEffect(() => {
 
       setMovies(data.results);
     } catch (error) {
-      alert(error.message);
+      setError(error.message);
     }
   };
   getRequest();
 }, []);
   
-  
   return (
-
     <div>
       <h2>Trending today</h2>
-      <MovieList movies={movies}/>
+      {error !== null && (
+        <p>
+          Oops, some error occured... Error message: {error}
+        </p>
+      )}
+      <MovieList movies={movies} />
     </div>
-  )
+  );
 }
 
 

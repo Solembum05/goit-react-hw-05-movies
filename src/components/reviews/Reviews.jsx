@@ -7,6 +7,7 @@ const Reviews = () => {
   const params = useParams();
   const [reviews, setReviews] = useState([]);
   const getReviews = `/movie/${params.movieId}/reviews`;
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getRequest = async () => {
@@ -14,7 +15,7 @@ const Reviews = () => {
         const { data } = await getApi(getReviews);
         setReviews(data.results);
       } catch (error) {
-        alert(error.message);
+        setError(error.message);
       }
     };
     getRequest();
@@ -23,6 +24,9 @@ const Reviews = () => {
 
   return reviews.length !== 0 ? (
     <section>
+      {error !== null && (
+        <p>Oops, some error occured... Error message: {error}</p>
+      )}
       <ul>
         {reviews.map(({ id, author, content }) => (
           <li key={id}>
@@ -38,3 +42,4 @@ const Reviews = () => {
 }
 
 export default Reviews
+

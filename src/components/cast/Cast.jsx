@@ -6,6 +6,7 @@ import { Actor } from "./cast.styled";
 const Cast = () => {
   const params = useParams();
   const [actors, setActors] = useState([]);
+  const [error, setError] = useState(null);
   const getCast = `/movie/${params.movieId}/credits`;
 
   useEffect(() => {
@@ -14,7 +15,7 @@ const Cast = () => {
         const { data } = await getApi(getCast);
         setActors(data.cast);
       } catch (error) {
-        alert(error.message);
+        setError(error.message);;
       }
     };
     getRequest();
@@ -23,6 +24,9 @@ const Cast = () => {
 
   return (
     <section>
+      {error !== null && (
+        <p>Oops, some error occured... Error message: {error}</p>
+      )}
       <ul>
         {actors.map(({ id, name, character, profile_path }) => (
           <li key={id}>
