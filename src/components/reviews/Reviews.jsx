@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { getApi } from 'services/api';
+import {  getReviews } from 'services/api';
 
 const Reviews = () => {
 
   const params = useParams();
   const [reviews, setReviews] = useState([]);
-  const getReviews = `/movie/${params.movieId}/reviews`;
+  // const getReviews = `/movie/${params.movieId}/reviews`;
+  const id = params.movieId;
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const getRequest = async () => {
       try {
-        const { data } = await getApi(getReviews);
+        const { data } = await getReviews(id);
         setReviews(data.results);
       } catch (error) {
         setError(error.message);
       }
     };
     getRequest();
-  }, [getReviews]);
+  }, [id]);
 
 
   return reviews.length !== 0 ? (

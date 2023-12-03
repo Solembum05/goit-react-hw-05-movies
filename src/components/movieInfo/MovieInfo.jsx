@@ -14,10 +14,13 @@ const MovieInfo = ({ movieInfo }) => {
     genres,
     release_date,
   } = movieInfo;
-  
+
+const defaultImg =
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
+
 const poster = poster_path
   ? `https://image.tmdb.org/t/p/w500${poster_path}`
-  : 'Poster not found';
+  : defaultImg;
   
   const genresList = genres.map(genr=>genr.name).join(' ')
 

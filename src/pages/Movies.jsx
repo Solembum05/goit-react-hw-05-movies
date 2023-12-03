@@ -2,7 +2,7 @@ import MovieList from 'components/movieList/MovieList';
 import { SearchBox } from 'components/searchBox/SearchBox'
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
-import { getApi } from 'services/api';
+import {  getSearchMovie } from 'services/api';
 
 const Movies = () => {
 
@@ -21,7 +21,7 @@ const Movies = () => {
     });
 }
 
-const getMovie = `search/movie`;
+// const getMovie = `search/movie`;
 
   useEffect(() => {
     const getRequest = async search => {
@@ -29,7 +29,7 @@ const getMovie = `search/movie`;
         return;
       }
       try {
-        const { data } = await getApi(getMovie, search);
+        const { data } = await getSearchMovie(search);
 
         setMovies(data.results);
       } catch (error) {
@@ -37,7 +37,7 @@ const getMovie = `search/movie`;
       }
     };
     getRequest(movie);
-  }, [getMovie, movie]);
+  }, [movie]);
   
   return (
     <main>

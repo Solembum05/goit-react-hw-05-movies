@@ -12,3 +12,31 @@ export const getApi = async (apiTipe, dataSubmit) => {
   // console.log(response);
   return response;
 };
+
+
+export const getSearchMovie = async searchQuery => {
+  const resp = await axios.get(
+    `${URL}/search/movie?api_key=${API_KEY}&language=en-US&page=1&query=${searchQuery}`
+  );
+  // const data = resp.data;
+
+  return resp;
+};
+
+export const getCast = async movieId => {
+  const resp = await axios.get(
+    `${URL}/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US&page=1&query=${movieId}`
+  );
+  // const data = resp.data;
+
+  return resp;
+};
+
+export const getReviews = async movieId => {
+  const resp = await axios.get(
+    `${URL}/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1&query=${movieId}`
+  );
+  // const data = resp.data;
+
+  return resp;
+};
